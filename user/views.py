@@ -10,10 +10,8 @@ def signup(request):
         if form.is_valid:
             form.save()
             username=form.cleaned_data.get('username')
-            password=form.cleaned_data.get('password')
-            users=authenticate(username="username",password="password")
-            print("~~~~~~~~~>>>>",list(request.POST.values()))
-            print("user====>>>",users)
+            password=form.cleaned_data.get('password1')
+            users = authenticate(username=username, password=password)
             
             messages.success(request, f'Your account has been created for {username}! You are now able to log in')
             return redirect('home')
@@ -25,6 +23,5 @@ def home(request):
     return render(request,'user/home.html')
 
 
-def login(request):
-    pass
+
     
