@@ -12,7 +12,8 @@ def signup(request):
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password1')
             users = authenticate(username=username, password=password)
-            
+            if users is not None:
+                login(request,users)  # this makes the users automatically login after the registration is complete..
             messages.success(request, f'Your account has been created for {username}! You are now able to log in')
             return redirect('home')
     else:
@@ -22,6 +23,9 @@ def signup(request):
 def home(request):
     return render(request,'user/home.html')
 
+
+def login():
+    pass
 
 
     
