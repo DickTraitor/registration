@@ -28,21 +28,18 @@ def home(request):
 
 @ login_required
 def profile(request):
-    if request.method=='POST':
-        p_form=ProfileForm(request.POST,instance=request.user)
-        if p_form.is_valid:
+    if request.method == 'POST':
+        p_form = ProfileForm(request.POST,instance=request.user)
+        if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('profile')     
+            return redirect('profile')
+
     else:
-        p_form=ProfileForm(request.POST)
-    context={
-        'p_form':p_form
+        p_form = ProfileForm(instance=request.user)
+
+    context = {
+        'p_form': p_form
     }
-    return render(request,'user/profile.html',context)
 
-    
-    
-
-
-    
+    return render(request, 'user/profile.html', context)
