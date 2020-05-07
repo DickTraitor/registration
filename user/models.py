@@ -5,4 +5,4 @@ class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     email=models.EmailField(max_length=254)
     def __str__(self):
-        return f'{self.username} Profile'
+        return f'{self.user} Profile'
